@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 
 {% block content %}
   <div class="container">
     <h1>Welcome to the Recipe App</h1>
     <h2>Latest Recipes</h2>
-    {% for recipe in recipes %}
+    {% for recipe in latest_recipes %}
       <div class="card my-4">
         <div class="card-body">
           <h5 class="card-title">{{ recipe.title }}</h5>
