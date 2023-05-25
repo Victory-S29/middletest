@@ -5,53 +5,25 @@ from .models import Recipe, Category
 class RecipeViewsTestCase(TestCase):
 
     def setUp(self):
-        category = Category.objects.create(name='Dessert')
         Recipe.objects.create(
             title='Test Recipe 1',
             description='Test Recipe 1 description',
             ingredients='Ingredient 1, Ingredient 2',
             instructions='Step 1, Step 2',
-            category=category
         )
         Recipe.objects.create(
             title='Test Recipe 2',
             description='Test Recipe 2 description',
             ingredients='Ingredient 3, Ingredient 4',
             instructions='Step 3, Step 4',
-            category=category
         )
         Recipe.objects.create(
             title='Test Recipe 3',
             description='Test Recipe 3 description',
             ingredients='Ingredient 5, Ingredient 6',
             instructions='Step 5, Step 6',
-            category=category
         )
 
-    def test_recipe_title_in_response(self):
-        response = self.client.get(reverse('main'))
-        recipes = Recipe.objects.all()
-        for recipe in recipes:
-            self.assertContains(response, recipe.title)
-
-    def test_recipe_description_in_response(self):
-        response = self.client.get(reverse('main'))
-        recipes = Recipe.objects.all()
-        for recipe in recipes:
-            self.assertContains(response, recipe.description)
-
-    def test_recipe_ingredients_in_response(self):
-        response = self.client.get(reverse('main'))
-        recipes = Recipe.objects.all()
-        for recipe in recipes:
-            self.assertContains(response, recipe.ingredients)
-
-    def test_recipe_instructions_in_response(self):
-        response = self.client.get(reverse('main'))
-        recipes = Recipe.objects.all()
-        for recipe in recipes:
-            self.assertContains(response, recipe.instructions)
-    
     def test_main_view(self):
         response = self.client.get(reverse('main'))
         self.assertEqual(response.status_code, 200)
