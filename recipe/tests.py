@@ -3,6 +3,7 @@ from django.urls import reverse
 from .models import Recipe, Category
 
 class RecipeViewsTestCase(TestCase):
+
     def setUp(self):
         category = Category.objects.create(name='Dessert')
         Recipe.objects.create(
