@@ -1,26 +1,31 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Recipe
+from .models import Recipe, Category
 
 class RecipeViewsTestCase(TestCase):
+
     def setUp(self):
+        category = Category.objects.create(name='Dessert')
         Recipe.objects.create(
             title='Test Recipe 1',
             description='Test Recipe 1 description',
             ingredients='Ingredient 1, Ingredient 2',
-            instructions='Step 1, Step 2'
+            instructions='Step 1, Step 2',
+            category=category
         )
         Recipe.objects.create(
             title='Test Recipe 2',
             description='Test Recipe 2 description',
             ingredients='Ingredient 3, Ingredient 4',
-            instructions='Step 3, Step 4'
+            instructions='Step 3, Step 4',
+            category=category
         )
         Recipe.objects.create(
             title='Test Recipe 3',
             description='Test Recipe 3 description',
             ingredients='Ingredient 5, Ingredient 6',
-            instructions='Step 5, Step 6'
+            instructions='Step 5, Step 6',
+            category=category
         )
 
     def test_recipe_title_in_response(self):
